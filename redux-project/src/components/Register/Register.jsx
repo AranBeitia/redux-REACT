@@ -50,14 +50,14 @@ const Register = () => {
 				name="email"
 				value={email}
 				onChange={onChange}
-				placeholder="escrube tu email"
+				placeholder="escribe tu email"
 			/>
 			<input
 				type="number"
 				name="age"
 				value={age}
 				onChange={onChange}
-				placeholder="escrube tu edad"
+				placeholder="escribe tu edad"
 			/>
 			<input
 				type="password"

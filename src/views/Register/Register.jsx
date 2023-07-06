@@ -1,18 +1,34 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { register } from '../../features/auth/authSlice'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { register, reset } from '../../features/auth/authSlice'
 import { notification } from 'antd'
 
 const Register = () => {
 	const [formData, setFormData] = useState({
-		name: '',
+		firstName: '',
+		username: '',
 		email: '',
 		password: '',
 		password2: '',
 		age: 0,
 	})
-	const { name, email, password, password2, age } = formData
+	const { firstName, username, email, password, password2, age } = formData
 	const dispatch = useDispatch()
+	const { isSuccess, message, isError } = useSelector((state) => state.auth)
+
+	useEffect(() => {
+		if (isSuccess) {
+			notification.success({
+				message: 'Success',
+				description: message,
+			})
+		}
+
+		if (isError) {
+			notification.error({ message: 'Error', description: message })
+		}
+		dispatch(reset())
+	}, [isSuccess, message, isError])
 
 	const onChange = (e) => {
 		setFormData((prevState) => ({
@@ -29,10 +45,6 @@ const Register = () => {
 				description: 'Passwords do not match',
 			})
 		} else {
-			notification.success({
-				message: 'Success',
-				description: 'Correct',
-			})
 			return dispatch(register(formData))
 		}
 	}
@@ -40,10 +52,17 @@ const Register = () => {
 		<form onSubmit={onSubmit}>
 			<input
 				type="text"
-				name="name"
-				value={name}
+				name="firstName"
+				value={firstName}
 				onChange={onChange}
 				placeholder="escribe tu nombre"
+			/>
+			<input
+				type="text"
+				name="username"
+				value={username}
+				onChange={onChange}
+				placeholder="escribe tu nombre de usuario"
 			/>
 			<input
 				type="email"

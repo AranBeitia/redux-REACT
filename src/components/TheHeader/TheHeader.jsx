@@ -17,13 +17,13 @@ const TheHeader = () => {
 	return (
 		<nav>
 			<ul>
+				<li>
+					<Link to="/">Home</Link>
+				</li>
 				{user ? (
 					<>
 						<li>
 							<button onClick={onLogout}>Logout</button>
-						</li>
-						<li>
-							<Link to="/">Home</Link>
 						</li>
 						<li>
 							<Link to="/profile">Profile | {user.username}</Link>

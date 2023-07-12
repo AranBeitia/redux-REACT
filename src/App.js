@@ -5,6 +5,7 @@ import Login from './views/Login/Login'
 import Register from './views/Register/Register'
 import Profile from './views/Profile/Profile'
 import PostDetail from './components/Posts/PostDetail/PostDetail'
+import Search from './components/Search/Search'
 import Home from './views/Home/Home'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
 				<Route path="/register" element={<Register />} />
 				<Route path="/profile" element={<Profile />} />
 				<Route path="/post/:id" element={<PostDetail />} />
+				<Route path="/search/:postName" element={<Search />} />
 			</Routes>
 		</Router>
 	)

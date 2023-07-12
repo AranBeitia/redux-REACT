@@ -26,7 +26,7 @@ const Posts = () => {
 						<Post
 							key={post._id}
 							content={post.content}
-							number={index}
+							title={post.title}
 							id={post._id}
 						/>
 					))}

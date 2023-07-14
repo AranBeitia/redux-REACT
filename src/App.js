@@ -7,6 +7,11 @@ import Profile from './views/Profile/Profile'
 import PostDetail from './components/Posts/PostDetail/PostDetail'
 import Search from './components/Search/Search'
 import Home from './views/Home/Home'
+import Admin from './views/Admin/Admin'
+import NotFound from './views/NotFound/NotFound'
+
+import PrivateZone from './guards/PrivateZone'
+import AdminZone from './guards/AdminZone'
 
 function App() {
 	return (
@@ -16,9 +21,25 @@ function App() {
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
-				<Route path="/profile" element={<Profile />} />
+				<Route
+					path="/profile"
+					element={
+						<PrivateZone>
+							<Profile />
+						</PrivateZone>
+					}
+				/>
 				<Route path="/post/:id" element={<PostDetail />} />
 				<Route path="/search/:postName" element={<Search />} />
+				<Route
+					path="/admin"
+					element={
+						<AdminZone>
+							<Admin />
+						</AdminZone>
+					}
+				/>
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</Router>
 	)
